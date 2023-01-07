@@ -10,6 +10,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	${PROJECT_INCLUDE_DIR}/ascend/ReadJSON.h
 	${PROJECT_INCLUDE_DIR}/ascend/ReadXML.h
 	${PROJECT_INCLUDE_DIR}/ascend/StringHash.h
+	${PROJECT_INCLUDE_DIR}/ascend/WriteJSON.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE
@@ -17,6 +18,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	ReadBinary.cpp
 	ReadJSON.cpp
 	ReadXML.cpp
+	WriteJSON.cpp
 )
 
 find_package(Qt6 CONFIG COMPONENTS Core)

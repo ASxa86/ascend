@@ -16,18 +16,22 @@ TEST(Factory, register)
 {
 	ascend::Factory factory;
 
-	EXPECT_TRUE(factory.registerType<MyClass>());
-	EXPECT_TRUE(factory.deregisterType<MyClass>());
+	factory.registerType<MyClass>();
+	factory.deregisterType<MyClass>();
 }
 
 TEST(Factory, create)
 {
 	ascend::Factory factory;
 
-	EXPECT_TRUE(factory.registerType<MyClass>());
+	factory.registerType<MyClass>();
 
 	auto object = factory.create("MyClass");
 	EXPECT_NE(object, nullptr);
+
+	factory.deregisterType<MyClass>();
+	object = factory.create("MyClass");
+	EXPECT_EQ(object, nullptr);
 }
 
 #include <Factory.test.moc>

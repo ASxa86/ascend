@@ -20,7 +20,7 @@ namespace ascend
 		auto operator=(Factory&&) noexcept -> Factory& = default;
 
 		template <typename T>
-		auto registerType(std::string_view x = {}) -> bool
+		auto registerType(std::string_view x = {}) -> void
 		{
 			if(x.empty() == true)
 			{
@@ -28,11 +28,10 @@ namespace ascend
 			}
 
 			this->map[std::string{x}] = std::make_unique<Creator<T>>();
-			return true;
 		}
 
 		template <typename T>
-		auto deregisterType(std::string_view x = {}) -> bool
+		auto deregisterType(std::string_view x = {}) -> void
 		{
 			if(x.empty() == true)
 			{
@@ -41,8 +40,6 @@ namespace ascend
 
 			const auto foundIt = this->map.find(x);
 			this->map.erase(foundIt);
-
-			return true;
 		}
 
 		auto create(std::string_view x, QObject& parent) -> QObject*;
