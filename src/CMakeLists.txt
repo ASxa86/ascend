@@ -5,16 +5,15 @@ project(ascend)
 add_library(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PRIVATE
-	${PROJECT_INCLUDE_DIR}/ascend/Factory.h
+	${PROJECT_INCLUDE_DIR}/ascend/Create.h
 	${PROJECT_INCLUDE_DIR}/ascend/ReadBinary.h
 	${PROJECT_INCLUDE_DIR}/ascend/ReadJSON.h
 	${PROJECT_INCLUDE_DIR}/ascend/ReadXML.h
-	${PROJECT_INCLUDE_DIR}/ascend/StringHash.h
 	${PROJECT_INCLUDE_DIR}/ascend/WriteJSON.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE
-	Factory.cpp
+	Create.cpp
 	ReadBinary.cpp
 	ReadJSON.cpp
 	ReadXML.cpp

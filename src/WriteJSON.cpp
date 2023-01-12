@@ -1,6 +1,8 @@
 #include <ascend/WriteJSON.h>
 #include <QJsonArray>
+#include <QJsonValue>
 #include <QMetaProperty>
+#include <QVariant>
 
 auto ascend::WriteJSON(const QObject& x) -> QJsonObject
 {
@@ -11,7 +13,16 @@ auto ascend::WriteJSON(const QObject& x) -> QJsonObject
 	for(auto i = 0; i < metaObject->propertyCount(); i++)
 	{
 		const auto p = metaObject->property(i);
-		object.insert(p.name(), QJsonValue::fromVariant(p.read(&x)));
+		auto variant = p.read(&x);
+
+		if(variant.canConvert<QJsonValue>() == true)
+		{
+			object.insert(p.name(), variant.toJsonValue());
+		}
+		else
+		{
+			object.insert(p.name(), QJsonValue::fromVariant(p.read(&x)));
+		}
 	}
 
 	QJsonArray children;
